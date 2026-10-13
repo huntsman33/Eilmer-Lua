@@ -1,22 +1,37 @@
-# Eilmer Lua (VS Code)
+<div align="center">
 
-[![Tests](https://github.com/huntsman33/Eilmer-Lua/actions/workflows/test.yml/badge.svg)](https://github.com/huntsman33/Eilmer-Lua/actions)
+# Eilmer Lua for VS Code
 
-Editor support for Eilmer 5 (`lmr`) Lua input scripts (grid, flow, gas, reaction and UDF files),
-built on the [sumneko Lua extension](https://marketplace.visualstudio.com/items?itemName=sumneko.lua).
+**Hover docs, completions and error checking for Eilmer 5 (`lmr`) input scripts.**
 
-- **Hover docs** for Eilmer classes, functions and `config.*` fields, taken from the gdtk source
-  comments, with a link to the defining file and line. The link opens your local gdtk checkout when it has that
-  file, otherwise the file on [GitHub](https://github.com/gdtk-uq/gdtk) at the revision the dictionary was built from.
-- **Completion** for globals, methods, constructor keys (`StructuredGrid:new{` → `psurface`, `niv`, …),
-  `config.` fields, and valid option strings (`config.flux_calculator = "` → `ausmdv`, `hllc`, …).
-- **Red squiggles** for:
-  - misspelt Eilmer functions and methods (sumneko `undefined-global` / `undefined-field`, raised to Error);
-  - unknown constructor keys: `StructuredGrid:new{nvi=11}`, with a quick fix to `niv`;
-  - `Line.new{...}` written instead of `Line:new{...}`;
-  - unknown `config.*` fields. Eilmer only *prints* a message for these and ignores the value, so a
-    typo like `config.max_tme` quietly does nothing;
-  - invalid option strings, such as `config.gasdynamic_update_scheme = "rk3"`.
+[![Tests](https://img.shields.io/github/actions/workflow/status/huntsman33/Eilmer-Lua/tests.yml?branch=main&label=tests&logo=githubactions&logoColor=white)](https://github.com/huntsman33/Eilmer-Lua/actions/workflows/tests.yml)
+[![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
+[![Eilmer 5](https://img.shields.io/badge/Eilmer-5%20(lmr)-orange)](https://github.com/gdtk-uq/gdtk)
+[![VS Code](https://img.shields.io/badge/VS%20Code-extension-007ACC?logo=visualstudiocode&logoColor=white)](#install)
+
+<img src="images/demo.gif" alt="Hover docs, completion and a quick fix in an Eilmer script" width="720">
+
+</div>
+
+---
+
+## Features
+
+| | |
+| --- | --- |
+| **Hover docs** | Docs for Eilmer classes, functions and `config.*` fields, pulled from the gdtk source, with a link to the defining file and line |
+| **Completion** | Globals, methods, constructor keys (`StructuredGrid:new{` → `niv`, `psurface`), `config.` fields and valid option strings (`flux_calculator = "` → `ausmdv`, `hllc`) |
+| **Error checking** | Catches the typos Eilmer silently ignores — see below |
+
+### What it catches
+
+| You wrote | Problem |
+| --- | --- |
+| `StructuredGrid:new{nvi=11}` | Unknown key — quick fix to `niv` |
+| `config.max_tme = 1e-3` | Unknown field. Eilmer only prints a warning and ignores it, so your end time is never set |
+| `config.gasdynamic_update_scheme = "rk3"` | Invalid option string |
+| `Line.new{...}` | Should be `Line:new{...}` |
+| `StructredGrid` | Misspelt Eilmer function or class |
 
 ## How it works
 

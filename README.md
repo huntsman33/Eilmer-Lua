@@ -1,5 +1,7 @@
 # Eilmer Lua (VS Code)
 
+[![Tests](https://github.com/huntsman33/Eilmer-Lua/actions/workflows/test.yml/badge.svg)](https://github.com/huntsman33/Eilmer-Lua/actions)
+
 Editor support for Eilmer 5 (`lmr`) Lua input scripts (grid, flow, gas, reaction and UDF files),
 built on the [sumneko Lua extension](https://marketplace.visualstudio.com/items?itemName=sumneko.lua).
 

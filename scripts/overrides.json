@@ -1,0 +1,18 @@
+{
+  "_comment": "Facts the source scan cannot infer (mostly return types of D functions). Merged into eilmer-api.json by introspect.lua. Keys: global name, or 'Class:method'.",
+  "setGasModel": {
+    "returns": [
+      {"type": "integer", "name": "nsp", "doc": "number of species"},
+      {"type": "integer", "name": "nmodes", "doc": "number of non-translational energy modes"},
+      {"type": "GasModel", "name": "gmodel"}
+    ]
+  },
+  "getGasModel": {"returns": [{"type": "GasModel", "name": "gmodel"}]},
+  "GasModel:createGasState": {"returns": [{"type": "GasState"}]},
+  "GasState:new": {"returns": [{"type": "GasState"}]},
+  "registerFluidGrid": {"returns": [{"type": "integer", "name": "id", "doc": "grid id, for use when making connections"}]},
+  "registerFluidGridArray": {"returns": [{"type": "integer", "name": "id"}]},
+  "StructuredGrid:subgrid": {"returns": [{"type": "StructuredGrid"}]},
+  "importPlot3DGrid": {"returns": [{"type": "StructuredGrid[]"}]},
+  "importGridproGrid": {"returns": [{"type": "StructuredGrid[]"}]}
+}

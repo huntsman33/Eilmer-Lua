@@ -1,0 +1,97 @@
+{
+  "name": "vscode-eilmer",
+  "displayName": "Eilmer Lua",
+  "description": "Hover docs, completions and diagnostics for Eilmer 5 (lmr) Lua input scripts, layered on the sumneko Lua language server.",
+  "version": "0.1.0",
+  "publisher": "jdwyer",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huntsman33/Eilmer-Lua.git"
+  },
+  "bugs": {
+    "url": "https://github.com/huntsman33/Eilmer-Lua/issues"
+  },
+  "homepage": "https://github.com/huntsman33/Eilmer-Lua#readme",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "eilmer",
+    "gdtk",
+    "lmr",
+    "cfd",
+    "lua"
+  ],
+  "extensionDependencies": [
+    "sumneko.lua"
+  ],
+  "activationEvents": [
+    "onLanguage:lua"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "eilmer.regenerate",
+        "title": "Eilmer: Regenerate API Dictionary from gdtk Source"
+      },
+      {
+        "command": "eilmer.configureLuaLS",
+        "title": "Eilmer: Configure Lua Language Server"
+      },
+      {
+        "command": "eilmer.showInfo",
+        "title": "Eilmer: Show API Dictionary Info"
+      }
+    ],
+    "configuration": {
+      "title": "Eilmer",
+      "properties": {
+        "eilmer.gdtkRepo": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the gdtk source repository. Empty means $DGD_REPO, then ~/gdtk."
+        },
+        "eilmer.gdtkInstall": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the gdtk install (contains bin/lmr and lib/*.lua). Empty means $DGD, then ~/gdtkinst."
+        },
+        "eilmer.settingsTarget": {
+          "type": "string",
+          "enum": [
+            "global",
+            "workspace"
+          ],
+          "default": "workspace",
+          "description": "Where to write the Lua language server settings (Lua.workspace.library and diagnostic severities). \"workspace\" keeps them in the project's .vscode/settings.json (falls back to user settings when no folder is open); \"global\" applies them to every Lua file you edit."
+        },
+        "eilmer.strictUndefined": {
+          "type": "boolean",
+          "default": true,
+          "description": "Raise the Lua language server's undefined-global and undefined-field diagnostics to Error, so misspelt Eilmer functions and methods get red squiggles."
+        },
+        "eilmer.diagnostics.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Check Eilmer-specific mistakes: unknown constructor keys, X.new{} instead of X:new{}, unknown config.* fields and invalid option strings."
+        },
+        "eilmer.checkStaleness": {
+          "type": "boolean",
+          "default": true,
+          "description": "On start-up, offer to regenerate the API dictionary when the gdtk repository has moved to a different revision."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "generate": "bash scripts/gen-eilmer-api.sh",
+    "test": "node test/run-tests.js",
+    "package": "npx --yes -p node@20 -p @vscode/vsce@3.6.0 -- vsce package --out dist/"
+  }
+}

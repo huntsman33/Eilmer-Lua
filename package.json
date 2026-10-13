@@ -9,6 +9,7 @@
     "type": "git",
     "url": "https://github.com/huntsman33/Eilmer-Lua.git"
   },
+  "icon": "images/eilmer-icon-3.png",
   "bugs": {
     "url": "https://github.com/huntsman33/Eilmer-Lua/issues"
   },

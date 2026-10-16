@@ -2,7 +2,7 @@
   "name": "vscode-eilmer",
   "displayName": "Eilmer Lua",
   "description": "Hover docs, completions and diagnostics for Eilmer 5 (lmr) Lua input scripts, layered on the sumneko Lua language server.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "jdwyer",
   "license": "GPL-3.0-or-later",
   "repository": {
